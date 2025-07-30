@@ -1,0 +1,448 @@
+<!-- Home Navbar -->
+<app-home-navbar></app-home-navbar>
+
+<<section class="hero-section" id="home">
+  <div class="hero-container">
+    <!-- Left Section - Text Content -->
+    <div class="hero-content">
+      <h1 class="hero-title">
+        WE COLLECT, DELIVER, OR SHIP PARCELS
+        <span class="highlight">WORLDWIDE</span>
+      </h1>
+      
+      <p class="hero-description">
+         Monitor shipments, receive real-time alerts, and oversee your packages effortlessly.
+      </p>
+      
+      <button class="cta-button hover-scale" [routerLink]="getButtonRoute()">
+        {{ getButtonText() }}
+      </button>
+      
+
+      <!-- Service badge -->
+      
+    </div>
+    
+    <!-- Right Section - Image with Gradient Background -->
+    <div class="hero-image-section">
+      <div class="gradient-background">
+        <div class="delivery-person">
+          <img src="/images/image-removebg-preview (7).png" alt="Courier Personnel" class="person-image">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section class="about-section scroll-animate" id="about" #aboutSection>
+  <div class="container">
+    <div class="about-container">
+      <div class="about-content">
+        <h2 class="about-title">About the Platform</h2>
+        <p class="about-description">
+          This system is a digital delivery assistant that helps users and businesses connect with dependable shipment providers globally.
+            We're committed to streamlining delivery workflows and ensuring a smooth tracking process from start to finish.
+        </p>
+        <p class="about-description">
+        
+        At Sendit, we are revolutionizing parcel delivery by making it faster, smarter, and more reliable. Whether you're sending a single package or managing frequent shipments, we provide seamless courier services that prioritize speed, security, and transparency. With real-time tracking, user-friendly platforms, and a dedicated support team, we ensure every delivery reaches its destination efficiently. Our mission is to simplify logistics for individuals and businesses alike—delivering trust, one parcel at a time.
+        </p>
+        
+    
+      </div>
+      <div class="about-image">
+        <img src="/images/download.png" alt="Our Mission" class="about-img">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services Section -->
+<section class="services-section scroll-animate" id="services" #servicesSection>
+  <div class="container">
+    <div class="services-header">
+      <h2 class="services-title">What We Offer</h2>
+      <p class="services-description">Select from a wide array of logistics services tailored to match your delivery demands.</p>
+    </div>
+    
+    <div class="services-grid">
+      <div class="service-card hover-lift">
+        <div class="service-icon">
+          <i class="fas fa-truck"></i>
+        </div>
+        <h3>Ground Shipping</h3>
+        <p>Trusted land-based delivery for local and regional transport. A practical and eco-conscious option.</p>
+      </div>
+      
+      <div class="service-card hover-lift">
+        <div class="service-icon">
+          <i class="fas fa-ship"></i>
+        </div>
+        <h3>Ocean Cargo</h3>
+        <p>Global freight solutions for bulk goods across seas. Ideal for long-distance, secure transfers.</p>
+      </div>
+      
+      <div class="service-card hover-lift">
+        <div class="service-icon">
+          <i class="fas fa-plane"></i>
+        </div>
+        <h3>Air Freight</h3>
+        <p>Rapid air delivery services for important packages. Ensures speed and efficiency worldwide.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Features Section -->
+<section class="features-section scroll-animate" id="features" #featuresSection>
+  <div class="container">
+    <div class="features-header">
+      <h2 class="features-title">Robust Capabilities</h2>
+      <p class="features-description">Everything you need to handle deliveries with precision and keep customers updated at all times.</p>
+    </div>
+    <div class="features-container">
+      <!-- Left: Features Grid -->
+      <div class="features-grid">
+        <div class="feature-card hover-lift">
+          <div class="feature-icon">
+            <i class="fas fa-route"></i>
+          </div>
+          <h3>Live Tracking Updates</h3>
+          <p>Monitor your items in motion with instant location insights and status checks.</p>
+        </div>
+
+        <div class="feature-card hover-lift">
+          <div class="feature-icon">
+            <i class="fas fa-lock"></i>
+          </div>
+          <h3>Account Protection</h3>
+          <p>Keep your account secure with encrypted access and multi-factor safety protocols.</p>
+        </div>
+
+        <div class="feature-card hover-lift">
+          <div class="feature-icon">
+            <i class="fas fa-bell"></i>
+          </div>
+          <h3>Smart Alerts System</h3>
+          <p>Receive timely updates via email as your package status evolves along the journey.</p>
+        </div>
+
+        <div class="feature-card hover-lift">
+          <div class="feature-icon">
+            <i class="fas fa-globe-africa"></i>
+          </div>
+          <h3>Map-Based Visibility</h3>
+          <p>Use integrated mapping to view delivery progress and pinpoint real-time locations.</p>
+        </div>
+      </div>
+
+      <!-- Right: Team Member Image -->
+      <div class="team-member-section">
+        <img src="/images/image-removebg-preview (3).png" alt="Logistics Specialist" class="team-member-image">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Process Section -->
+<section class="process-section scroll-animate" id="process" #processSection>
+  <div class="container">
+    <div class="process-header">
+      <h2 class="process-title">Getting Started</h2>
+      <p class="process-description">Begin using the platform in three seamless steps. Simplified delivery from start to finish.</p>
+    </div>
+    <div class="process-container">
+      <!-- Left: Team Image -->
+      <div class="team-image-section">
+        <img src="/images/image-removebg-preview (3).png" alt="Delivery Process Illustration" class="team-image">
+      </div>
+
+     <!-- Right: Process Steps -->
+<div class="process-steps">
+  <div class="step-item hover-lift">
+    <div class="step-icon">
+      <i class="fas fa-user-plus"></i>
+    </div>
+    <div class="step-content">
+      <h3>Register Instantly</h3>
+      <p>Create your personal or business account in just a few steps to begin managing deliveries efficiently.</p>
+    </div>
+  </div>
+
+  <div class="step-item hover-lift">
+    <div class="step-icon">
+      <i class="fas fa-shipping-fast"></i>
+    </div>
+    <div class="step-content">
+      <h3>Dispatch Your Parcel</h3>
+      <p>Fill in pickup and delivery information, select delivery preferences, and we’ll coordinate the transport process.</p>
+    </div>
+  </div>
+
+  <div class="step-item hover-lift">
+    <div class="step-icon">
+      <i class="fas fa-map-marked-alt"></i>
+    </div>
+    <div class="step-content">
+      <h3>Track & Stay Updated</h3>
+      <p>Get real-time updates and alerts as your parcel moves through every stage of its journey.</p>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Partnerships Section -->
+<section class="partnerships-section scroll-animate" id="partnerships" #partnershipsSection>
+  <div class="container">
+    <div class="partnerships-header">
+      <h2 class="partnerships-title">Collaborating with Logistics Experts</h2>
+      <p class="partnerships-description">We work alongside reliable and innovative delivery providers to bring you seamless transportation options.</p>
+    </div>
+    <div class="partnerships-grid">
+      <div class="partner-card hover-lift">
+        <h3>SwiftPost</h3>
+        <p>Rapid National Shipments</p>
+      </div>
+      <div class="partner-card hover-lift">
+        <h3>ParcelNet</h3>
+        <p>Digital Logistics Hub</p>
+      </div>
+      <div class="partner-card hover-lift">
+        <h3>TransMove</h3>
+        <p>Local & Global Coverage</p>
+      </div>
+      <div class="partner-card hover-lift">
+        <h3>QuickTrail</h3>
+        <p>Efficient Last-Mile Solutions</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Global Network Section -->
+<section class="global-network-section scroll-animate" id="globalNetwork" #globalNetworkSection>
+  <div class="container">
+    <div class="global-network-container">
+      <!-- Left: Static Globe and Boxes Image -->
+      <div class="globe-visual-section">
+        <div class="globe-image-container">
+          <img src="/images/image-removebg-preview (3).png" alt="World Logistics Illustration" class="globe-image">
+        </div>
+      </div>
+
+      <!-- Right: Content -->
+      <div class="global-content">
+        <h2 class="global-title">We Connect Continents</h2>
+        <p class="global-description">
+          Our logistics coverage spans major cities and remote regions worldwide. Through strategic partners in over 50 countries, we bridge the gap between senders and receivers to ensure fast, safe, and dependable delivery.
+        </p>
+        <div class="global-buttons">
+          <button class="signup-btn hover-scale" [routerLink]="getButtonRoute()" *ngIf="!isAuthenticated">JOIN NOW</button>
+          <button class="login-btn hover-scale" routerLink="/login" *ngIf="!isAuthenticated">ACCESS</button>
+          <button class="signup-btn hover-scale" [routerLink]="getButtonRoute()" *ngIf="isAuthenticated">{{ getButtonText() }}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section class="about-section scroll-animate" id="about" #aboutSection>
+  <div class="container">
+    <div class="about-container">
+      <div class="about-content">
+        <h2 class="about-title">What Drives Our Platform</h2>
+        <p class="about-description">
+          We help users connect with reliable, simplified delivery services in multiple regions.
+        </p>
+        <p class="about-description">
+          Our mission is to make parcel movement smarter and keep users in the loop from pickup to drop-off.
+        </p>
+      </div>
+      <div class="about-image">
+        <img src="/images/image-removebg-preview (3).png" alt="Service Professionals" class="about-img">
+      </div>
+    </div>
+  </div>
+
+<section class="services-section scroll-animate" id="services" #servicesSection>
+  <div class="container">
+    <div class="services-header">
+      <h2 class="services-title">Delivery Methods</h2>
+      <p class="services-description">Choose a transport method that fits your timing and cargo needs.</p>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card hover-lift">
+        <div class="service-icon">
+          <i class="fas fa-truck"></i>
+        </div>
+        <h3>Road Freight</h3>
+        <p>Reliable ground transport for short- and long-distance shipping within regions.</p>
+      </div>
+
+      <div class="service-card hover-lift">
+        <div class="service-icon">
+          <i class="fas fa-ship"></i>
+        </div>
+        <h3>Marine Cargo</h3>
+        <p>Efficient ocean freight services for international bulk deliveries.</p>
+      </div>
+
+      <div class="service-card hover-lift">
+        <div class="service-icon">
+          <i class="fas fa-plane"></i>
+        </div>
+        <h3>Air Delivery</h3>
+        <p>Fast and secure air shipping for time-sensitive consignments.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="features-section scroll-animate" id="features" #featuresSection>
+  <div class="container">
+    <div class="features-header">
+      <h2 class="features-title">Platform Tools</h2>
+      <p class="features-description">Integrated tools built to optimize your delivery workflow.</p>
+    </div>
+    <div class="features-container">
+      <div class="features-grid">
+        <div class="feature-card hover-lift">
+          <div class="feature-icon">
+            <i class="fas fa-mobile-alt"></i>
+          </div>
+          <h3>Real-Time Updates</h3>
+          <p>Stay informed with live tracking throughout the journey.</p>
+        </div>
+
+        <div class="feature-card hover-lift">
+          <div class="feature-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3>Secured Access</h3>
+          <p>Multi-layer security ensures only you manage your deliveries.</p>
+        </div>
+
+        <div class="feature-card hover-lift">
+          <div class="feature-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <h3>Status Alerts</h3>
+          <p>Receive timely notifications for every major delivery event.</p>
+        </div>
+
+        <div class="feature-card hover-lift">
+          <div class="feature-icon">
+            <i class="fas fa-map-marked-alt"></i>
+          </div>
+          <h3>Route Map</h3>
+          <p>Visualize your package’s path from origin to destination.</p>
+        </div>
+      </div>
+
+      <div class="team-member-section">
+        <img src="/images/image-removebg-preview (3).png" alt="Customer Support Team" class="team-member-image">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process-section scroll-animate" id="process" #processSection>
+  <div class="container">
+    <div class="process-header">
+      <h2 class="process-title">How It Works</h2>
+      <p class="process-description">Start shipping in just a few easy steps — no hassle, no delays.</p>
+    </div>
+    <div class="process-container">
+      <div class="team-image-section">
+        <img src="/images/image-removebg-preview (3).png" alt="User Onboarding Flow" class="team-image">
+      </div>
+
+      <div class="process-steps">
+        <div class="step-item hover-lift">
+          <div class="step-icon">
+            <i class="fas fa-user-plus"></i>
+          </div>
+          <div class="step-content">
+            <h3>Create Your Account</h3>
+            <p>Sign up quickly and unlock access to all shipping features.</p>
+          </div>
+        </div>
+
+        <div class="step-item hover-lift">
+          <div class="step-icon">
+            <i class="fas fa-dolly"></i>
+          </div>
+          <div class="step-content">
+            <h3>Submit Delivery Info</h3>
+            <p>Provide pickup and destination details, then proceed.</p>
+          </div>
+        </div>
+
+        <div class="step-item hover-lift">
+          <div class="step-icon">
+            <i class="fas fa-bell"></i>
+          </div>
+          <div class="step-content">
+            <h3>Track Progress</h3>
+            <p>Follow your shipment in real-time with prompt updates.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="partnerships-section scroll-animate" id="partnerships" #partnershipsSection>
+  <div class="container">
+    <div class="partnerships-header">
+      <h2 class="partnerships-title">Logistics Partners</h2>
+      <p class="partnerships-description">We collaborate with recognized global carriers to keep your deliveries efficient.</p>
+    </div>
+    <div class="partnerships-grid">
+      <div class="partner-card hover-lift">
+        <h3>GlobalTrack</h3>
+        <p>Cross-Border Solutions</p>
+      </div>
+      <div class="partner-card hover-lift">
+        <h3>UrbanShip</h3>
+        <p>Local Delivery Experts</p>
+      </div>
+      <div class="partner-card hover-lift">
+        <h3>QuickLink</h3>
+        <p>Global Freight Channel</p>
+      </div>
+      <div class="partner-card hover-lift">
+        <h3>PackFlow</h3>
+        <p>E-Commerce Transport</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="global-network-section scroll-animate" id="globalNetwork" #globalNetworkSection>
+  <div class="container">
+    <div class="global-network-container">
+      <div class="globe-visual-section">
+        <div class="globe-image-container">
+          <img src="/images/image-removebg-preview (3).png" alt="Logistics Reach Map" class="globe-image">
+        </div>
+      </div>
+
+      <div class="global-content">
+        <h2 class="global-title">Worldwide Coverage</h2>
+        <p class="global-description">
+          We maintain reliable shipping across continents through our extensive network of verified regional and international partners in 50+ countries.
+        </p>
+        <div class="global-buttons">
+          <button class="signup-btn hover-scale" [routerLink]="getButtonRoute()" *ngIf="!isAuthenticated">Create Account</button>
+          <button class="login-btn hover-scale" routerLink="/login" *ngIf="!isAuthenticated">Sign In</button>
+          <button class="signup-btn hover-scale" [routerLink]="getButtonRoute()" *ngIf="isAuthenticated">{{ getButtonText() }}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,306 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String        @id @default(cuid())
+  email         String        @unique
+  password      String
+  name          String
+  phone         String?
+  address       String?
+  role          UserRole      @default(CUSTOMER)
+  isAvailable  Boolean? @default(true)
+  
+  // Driver-specific fields (only for DRIVER role)
+  licenseNumber String?       @unique
+  vehicleNumber String?
+  vehicleType   VehicleType?
+  currentLat    Float?
+  currentLng    Float?
+  
+  // Driver application fields
+  driverApplicationStatus DriverApplicationStatus? @default(NOT_APPLIED)
+  driverApplicationDate   DateTime?
+  driverApplicationReason String?
+  driverApprovalDate      DateTime?
+  driverApprovedBy        String?
+  driverRejectionReason   String?
+  
+  // Driver performance metrics
+  averageRating          Float?     @default(0)
+  totalRatings          Int        @default(0)
+  totalDeliveries       Int        @default(0)
+  completedDeliveries   Int        @default(0)
+  cancelledDeliveries   Int        @default(0)
+  averageDeliveryTime   Int?       // in minutes
+  onTimeDeliveryRate    Float?     @default(0) // percentage
+  lastActiveAt          DateTime?
+  totalEarnings         Float?     @default(0)
+  
+  // Customer metrics  
+  totalParcelsEverSent    Int      @default(0)
+  totalParcelsReceived    Int      @default(0)
+  preferredPaymentMethod  String?
+  
+  // Common fields
+  profilePicture String?      // URL to profile picture
+  isActive      Boolean       @default(true)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  deletedAt     DateTime?     // soft delete
+
+  // Relations
+  sentParcels     Parcel[] @relation("SenderParcels")
+  receivedParcels Parcel[] @relation("RecipientParcels")
+  assignedParcels Parcel[] @relation("DriverParcels")
+  
+  // New relations
+  reviewsGiven    Review[] @relation("ReviewsGiven")
+  reviewsReceived Review[] @relation("ReviewsReceived")
+  notifications   Notification[]
+  statusUpdates   ParcelStatusHistory[] @relation("StatusUpdates")
+  deliveryProofs  DeliveryProof[] @relation("DeliveryProofs")
+  confirmedDeliveries DeliveryProof[] @relation("DeliveryConfirmations")
+
+  @@map("users")
+  @@index([name])
+  @@index([email])
+  @@index([phone])
+  @@index([role])
+  @@index([isActive])
+  @@index([createdAt])
+}
+
+model Parcel {
+  id                   String        @id @default(cuid())
+  trackingNumber       String        @unique
+  
+  // Sender info (can be registered or non-registered)
+  senderId             String?       // Optional: if sender is registered user
+  senderName           String        // Always stored
+  senderEmail          String        // Always stored
+  senderPhone          String        // Always stored
+  
+  // Recipient info (can be registered or non-registered)
+  recipientId          String?       // Optional: if recipient is registered user
+  recipientName        String        // Always stored
+  recipientEmail       String        // Always stored
+  recipientPhone       String        // Always stored
+  
+  // Driver assignment
+  driverId             String?       // Optional: assigned driver
+  assignedAt           DateTime?     // When parcel was assigned to driver
+  
+  pickupAddress        String
+  deliveryAddress      String
+  currentLocation      String?
+  status               ParcelStatus  @default(pending)
+  weight               Float
+  description          String?
+  value                Float?
+  deliveryInstructions String?
+  notes                String?
+  latitude             Float?
+  longitude            Float?
+  
+  // Delivery time tracking
+  estimatedPickupTime    DateTime?
+  actualPickupTime       DateTime?
+  estimatedDeliveryTime  DateTime?
+  actualDeliveryTime     DateTime?
+  totalDeliveryTime      Int?       // minutes from pickup to delivery
+  deliveryAttempts       Int        @default(0)
+  deliveryFee           Float?
+  paymentStatus         PaymentStatus @default(PENDING)
+  
+  // Delivery confirmation
+  deliveredToRecipient  Boolean     @default(false)
+  deliveryConfirmedAt   DateTime?
+  deliveryConfirmedBy   String?
+  customerSignature     String?
+  customerNotes         String?
+  
+  // Completion tracking
+  completedAt           DateTime?
+  completedBy           String?
+  
+  // Timestamps
+  createdAt             DateTime     @default(now())
+  updatedAt             DateTime     @updatedAt
+  deletedAt             DateTime?    // soft delete
+
+  // Relations
+  sender                User?        @relation("SenderParcels", fields: [senderId], references: [id])
+  recipient             User?        @relation("RecipientParcels", fields: [recipientId], references: [id])
+  driver                User?        @relation("DriverParcels", fields: [driverId], references: [id])
+  statusHistory         ParcelStatusHistory[]
+  reviews               Review[]
+  deliveryProof         DeliveryProof?
+  notifications         Notification[]
+
+  @@map("parcels")
+  @@index([senderName])
+  @@index([senderEmail])
+  @@index([recipientName])
+  @@index([recipientEmail])
+  @@index([senderId])
+  @@index([recipientId])
+  @@index([driverId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model Review {
+  id          String     @id @default(cuid())
+  parcelId    String
+  reviewerId  String     // Customer who left the review
+  revieweeId  String?    // Driver being reviewed (optional)
+  rating      Int        // 1-5 stars
+  comment     String?
+  reviewType  ReviewType // SERVICE, DRIVER, DELIVERY_SPEED, etc.
+  isPublic    Boolean    @default(true)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  parcel    Parcel @relation(fields: [parcelId], references: [id])
+  reviewer  User   @relation("ReviewsGiven", fields: [reviewerId], references: [id])
+  reviewee  User?  @relation("ReviewsReceived", fields: [revieweeId], references: [id])
+
+  @@map("reviews")
+}
+
+model ParcelStatusHistory {
+  id          String       @id @default(cuid())
+  parcelId    String
+  status      ParcelStatus
+  location    String?
+  latitude    Float?
+  longitude   Float?
+  updatedBy   String?      // User who updated (driver/admin)
+  timestamp   DateTime     @default(now())
+  notes       String?
+  imageUrl    String?      // Proof photos
+
+  parcel      Parcel @relation(fields: [parcelId], references: [id])
+  updatedByUser User? @relation("StatusUpdates", fields: [updatedBy], references: [id])
+
+  @@map("parcel_status_history")
+}
+
+model Notification {
+  id          String           @id @default(cuid())
+  userId      String
+  title       String
+  message     String
+  type        NotificationType
+  isRead      Boolean          @default(false)
+  actionUrl   String?
+  parcelId    String?
+  createdAt   DateTime         @default(now())
+  readAt      DateTime?
+
+  user   User    @relation(fields: [userId], references: [id])
+  parcel Parcel? @relation(fields: [parcelId], references: [id])
+
+  @@map("notifications")
+}
+
+model DeliveryProof {
+  id              String   @id @default(cuid())
+  parcelId        String   @unique
+  customerSignature String?  // Customer signature URL
+  recipientName   String
+  deliveredAt     DateTime // When driver delivered (driver timestamp)
+  confirmedAt     DateTime // When customer confirmed delivery
+  deliveredBy     String   // Driver ID
+  confirmedBy     String   // Recipient ID who confirmed
+  customerNotes   String?  // Any notes from customer
+  driverNotes     String?  // Any notes from driver
+  
+  parcel Parcel @relation(fields: [parcelId], references: [id])
+  driver User   @relation("DeliveryProofs", fields: [deliveredBy], references: [id])
+  recipient User @relation("DeliveryConfirmations", fields: [confirmedBy], references: [id])
+
+  @@map("delivery_proofs")
+}
+
+enum UserRole {
+  CUSTOMER
+  DRIVER
+  ADMIN
+}
+
+enum DriverApplicationStatus {
+  NOT_APPLIED
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum VehicleType {
+  MOTORCYCLE
+  CAR
+  VAN
+  TRUCK
+}
+
+enum ParcelStatus {
+  pending
+  assigned
+  picked_up
+  in_transit
+  delivered_to_recipient  // Driver delivered, waiting for customer confirmation
+  delivered              // Customer confirmed delivery
+  completed              // Customer marked as complete, can leave review
+  cancelled
+}
+
+enum ReviewType {
+  SERVICE
+  DRIVER
+  DELIVERY_SPEED
+  COMMUNICATION
+  OVERALL
+}
+
+enum NotificationType {
+  PARCEL_CREATED
+  PARCEL_ASSIGNED
+  PARCEL_PICKED_UP
+  PARCEL_IN_TRANSIT
+  PARCEL_DELIVERED_TO_RECIPIENT  // Driver delivered, waiting for customer confirmation
+  PARCEL_DELIVERED              // Customer confirmed delivery
+  PARCEL_COMPLETED              // Customer marked as complete
+  DRIVER_ASSIGNED
+  PAYMENT_RECEIVED
+  REVIEW_RECEIVED
+}
+
+
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+  REFUNDED
+}
+
+model PasswordResetToken {
+  id        String   @id @default(cuid())
+  email     String
+  token     String   // 6-digit token
+  expiresAt DateTime
+  used      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@map("password_reset_tokens")
+} 

@@ -1,0 +1,277 @@
+.signup-page {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #E6F0FA 0%, #B3D4FC 100%);
+  padding: 15px;
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.signup-container {
+  max-width: 400px;
+  width: 100%;
+  background: #FFFFFF;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), 0 20px 40px rgba(0, 0, 0, 0.05);
+  min-height: 500px;
+  transition: transform 0.3s ease;
+}
+
+.signup-container:hover {
+  transform: translateY(-5px);
+}
+
+.form-section {
+  flex: 1;
+  padding: 40px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #F9FBFD 0%, #E0EAF5 100%);
+}
+
+.form-content {
+  width: 100%;
+  max-width: 320px;
+  animation: fadeInUp 0.5s ease-out;
+}
+
+.welcome-message {
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 15px;
+  background: rgba(59, 130, 246, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  animation: fadeInUp 0.5s ease-out 0.2s both;
+}
+
+.welcome-message h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #1E3A8A;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.welcome-message p {
+  font-size: 0.9rem;
+  color: #4B5563;
+  line-height: 1.5;
+  opacity: 0.9;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.form-header h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1E3A8A;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.form-header p {
+  color: #4B5563;
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.signup-form {
+  margin-bottom: 20px;
+}
+
+/* First + Last name group layout for wide screens */
+.name-fields {
+  display: block;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #1E3A8A;
+  font-size: 0.9rem;
+  text-transform: capitalize;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid #CBD5E1;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  background-color: #F9FAFB;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #3B82F6;
+  background-color: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.form-group input::placeholder {
+  color: #9CA3AF;
+}
+
+.password-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-input-container input {
+  padding-right: 50px;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #6B7280;
+  cursor: pointer;
+  padding: 5px;
+  font-size: 1rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.password-toggle:hover {
+  color: #3B82F6;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.password-toggle:focus {
+  outline: none;
+  color: #3B82F6;
+}
+
+.signup-btn {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #3B82F6 0%, #1E40AF 100%);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.signup-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(59, 130, 246, 0.4);
+}
+
+.signup-btn:active {
+  transform: translateY(0);
+}
+
+.login-link {
+  text-align: center;
+}
+
+.login-link p {
+  color: #4B5563;
+  font-size: 0.85rem;
+}
+
+.login-link a {
+  color: #3B82F6;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.login-link a:hover {
+  color: #1E40AF;
+}
+
+/* Responsive design for name fields side-by-side */
+@media (min-width: 600px) {
+  .name-fields {
+    display: flex;
+    gap: 16px;
+  }
+
+  .name-fields .form-group {
+    flex: 1;
+    margin-bottom: 20px;
+  }
+}
+
+/* Tablet responsiveness */
+@media (max-width: 768px) {
+  .signup-container {
+    max-width: 100%;
+    min-height: auto;
+    max-height: none;
+  }
+
+  .form-section {
+    padding: 25px 30px;
+  }
+
+  .welcome-message h3 {
+    font-size: 1.3rem;
+  }
+
+  .welcome-message p {
+    font-size: 0.85rem;
+  }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 480px) {
+  .signup-page {
+    padding: 10px;
+  }
+
+  .form-section {
+    padding: 20px 25px;
+  }
+
+  .form-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .welcome-message {
+    padding: 10px;
+  }
+
+  .welcome-message h3 {
+    font-size: 1.2rem;
+  }
+
+  .welcome-message p {
+    font-size: 0.8rem;
+  }
+}
